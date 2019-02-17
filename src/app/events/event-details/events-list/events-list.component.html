@@ -1,0 +1,11 @@
+<app-events-search (searchChange)="onSearchChange($event)"></app-events-search>
+
+<div class="events-list" *ngIf="(events$ | async) as ev">
+  <app-events-list-item
+    *ngFor="let event of (ev | filterBy: searchFilter)"
+    [event]="event"
+  ></app-events-list-item>
+  <h2 *ngIf="(ev | filterBy: searchFilter).length === 0">
+    No matching search result..
+  </h2>
+</div>

@@ -1,0 +1,20 @@
+<div
+  appHighlight
+  class="events-list-item"
+  [ngClass]="{ soldout: !event.ticketsAvailable }"
+>
+  <img [src]="event.imageUrl" alt="{{ event.name }}" />
+  <div class="event-details">
+    <h2>{{ event.name }}</h2>
+    <p><i class="fas fa-map-marker-alt"></i> {{ event.location.name }}</p>
+    <p><i class="far fa-calendar-alt"></i> {{ event.date }}</p>
+    <a
+      *ngIf="event.ticketsAvailable"
+      class="read-more"
+      [routerLink]="['/events', event.id]"
+    >
+      Book Now &#x219D;
+    </a>
+    <span *ngIf="!event.ticketsAvailable" class="badge"> SOLD OUT!</span>
+  </div>
+</div>

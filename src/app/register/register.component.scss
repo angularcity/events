@@ -1,0 +1,92 @@
+@import "../../partials/variables";
+@import "../../partials/mixins";
+
+:host {
+  display: flex;
+  height: calc(100vh - 108px);
+  align-items: center;
+  justify-content: center;
+
+  background-image: linear-gradient(
+    to right top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
+}
+.register-page {
+  width: $login-card-width;
+  padding: 8% 0 0;
+  margin: auto;
+  &__wrapper {
+    position: relative;
+    z-index: 1;
+    background: map-get($map: $colors, $key: white);
+    max-width: $login-card-width;
+    margin: 0 auto 10rem;
+    padding: 4.5rem;
+    text-align: center;
+    @include box-shadow();
+    input {
+      outline: 0;
+      background: map-get($map: $colors, $key: inputBg);
+      width: 100%;
+      border: 0;
+      margin: 0 0 1.5rem;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      font-size: 1.4rem;
+    }
+    button {
+      text-transform: uppercase;
+      outline: 0;
+      background: map-get($map: $colors, $key: black);
+      width: 100%;
+      border: 0;
+      padding: 15px;
+      color: map-get($map: $colors, $key: white);
+      font-size: 1.4rem;
+      -webkit-transition: all 0.3 ease;
+      transition: all 0.3 ease;
+      cursor: pointer;
+      position: relative;
+    }
+  }
+}
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #db2828;
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width: $bp-mobile-portrait) {
+  .login-page {
+    width: 90vw;
+  }
+}

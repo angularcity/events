@@ -1,0 +1,16 @@
+@import "../../../partials/variables";
+
+.edit-event {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  ul.edit-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    float: left;
+    .edit-event-desc {
+      overflow: hidden;
+    }
+  }
+}

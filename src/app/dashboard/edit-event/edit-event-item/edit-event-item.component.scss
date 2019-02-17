@@ -1,0 +1,36 @@
+@import "../../../../partials/variables";
+
+.edit-event-item {
+  padding: 0.5rem;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  background-color: map-get($map: $colors, $key: black);
+  color: map-get($map: $colors, $key: white);
+  position: relative;
+
+  .edit-event-desc {
+    overflow: hidden;
+    img {
+      width: 100px;
+      height: 100px;
+      margin-right: 10px;
+      float: left;
+    }
+    .event-list-name {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .fa-edit {
+      position: absolute;
+      right: 20px;
+      top: 30px;
+    }
+    .fa-times-circle {
+      position: absolute;
+      bottom: 30px;
+      right: 24px;
+    }
+  }
+}

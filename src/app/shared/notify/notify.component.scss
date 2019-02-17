@@ -1,0 +1,56 @@
+.notify {
+  position: fixed;
+  top: 80px;
+  right: 10px;
+  min-width: 200px;
+  z-index: 9999;
+  padding: 20px;
+  text-align: center;
+  visibility: hidden;
+  padding-left: 50px;
+  -webkit-box-shadow: 0 5px 6px -6px #000;
+  -moz-box-shadow: 0 5px 6px -6px #000;
+  box-shadow: 0 5px 6px -6px #000;
+
+  .notify-icon {
+    left: 17px;
+    position: absolute;
+    top: 21px;
+  }
+
+  &.alert {
+    background-color: red;
+    color: white;
+  }
+  &.success {
+    background-color: green;
+    color: white;
+  }
+  &.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.3s, fadeout 0.3s 2.5s;
+    animation: fadein 0.3s, fadeout 0.3s 2.5s;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    top: 110px;
+    opacity: 0;
+  }
+  to {
+    top: 80px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    top: 110px;
+    opacity: 0;
+  }
+  to {
+    top: 80px;
+    opacity: 1;
+  }
+}

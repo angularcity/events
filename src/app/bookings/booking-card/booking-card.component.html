@@ -1,0 +1,21 @@
+<div class="booking-card-wrapper">
+  <div class="booking-card">
+    <img
+      class="booking-thumb"
+      [src]="booking.ev.imageUrl"
+      alt="{{ booking.ev.name }}"
+    />
+    <div class="booking-card-desc">
+      <p class="header">{{ booking.ev.name }}</p>
+      <p class="date">
+        <i class="far fa-calendar-alt"></i> {{ booking.ev.date }}
+      </p>
+      <p class="date">
+        <i class="fas fa-map-marker-alt"></i>{{ booking.ev.location.name }}
+      </p>
+      <button (click)="cancel(booking.ev)" class="cancel-btn">
+        <i class="far fa-times-circle"></i>Cancel Event
+      </button>
+    </div>
+  </div>
+</div>

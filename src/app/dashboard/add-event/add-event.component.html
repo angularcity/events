@@ -1,0 +1,115 @@
+<form [formGroup]="eventForm" class="event-form" (ngSubmit)="eventFormSubmit()">
+  <div class="form-group">
+    <label for=""> Event Name </label>
+    <input [formControlName]="'name'" type="text" />
+
+    <span
+      *ngIf="!eventForm.get('name').valid && eventForm.get('name').touched"
+      class="help-block"
+    >
+      Please enter valid Event Name
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for=""> Event Date </label>
+    <input [formControlName]="'date'" type="text" />
+    <span
+      *ngIf="!eventForm.get('date').valid && eventForm.get('date').touched"
+      class="help-block"
+    >
+      Please enter valid Event Date
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for=""> Event Image </label>
+    <input [formControlName]="'imageUrl'" type="text" />
+
+    <span
+      *ngIf="
+        !eventForm.get('imageUrl').valid && eventForm.get('imageUrl').touched
+      "
+      class="help-block"
+    >
+      Please enter valid Event Image URL
+    </span>
+  </div>
+
+  <div formGroupName="location">
+    <div class="form-group">
+      <label for=""> Event Location </label>
+      <input [formControlName]="'name'" type="text" />
+
+      <span
+        *ngIf="
+          !eventForm.get('location.name').valid &&
+          eventForm.get('location.name').touched
+        "
+        class="help-block"
+      >
+        Please enter valid Location name
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for=""> Location Latitude</label>
+      <input [formControlName]="'lat'" type="text" />
+      <span
+        *ngIf="
+          !eventForm.get('location.lat').valid &&
+          eventForm.get('location.lat').touched
+        "
+        class="help-block"
+      >
+        Please enter valid Location Latitude
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for=""> Location Longitude</label>
+      <input [formControlName]="'lng'" type="text" />
+      <span
+        *ngIf="
+          !eventForm.get('location.lng').valid &&
+          eventForm.get('location.lng').touched
+        "
+        class="help-block"
+      >
+        Please enter valid Location Longitude
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for=""> Tickets Available</label>
+    <input [formControlName]="'ticketsAvailable'" type="checkbox" />
+    <span
+      *ngIf="
+        !eventForm.get('ticketsAvailable').valid &&
+        eventForm.get('ticketsAvailable').touched
+      "
+      class="help-block"
+    >
+      Ticket availability is required
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for=""> Description</label>
+    <textarea rows="4" [formControlName]="'description'"></textarea>
+    <span
+      *ngIf="
+        !eventForm.get('description').valid &&
+        eventForm.get('description').touched
+      "
+      class="help-block"
+    >
+      Description is required
+    </span>
+  </div>
+  <button [disabled]="!eventForm.valid" class="submit" type="submit">
+    Add New Event
+  </button>
+  <!-- <pre> {{ eventForm.value | json }}</pre> -->
+</form>

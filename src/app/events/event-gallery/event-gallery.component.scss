@@ -1,0 +1,44 @@
+@import "../../../partials/variables";
+
+.gallery-header {
+  background-color: map-get($map: $colors, $key: black);
+  color: map-get($map: $colors, $key: white);
+
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+  padding: 1.5rem 0;
+  letter-spacing: 0.75rem;
+}
+
+.gallery-wrapper {
+  background-color: map-get($map: $colors, $key: black);
+  min-height: 200px;
+
+  .gallery-container {
+    width: 70vw;
+    padding: 2rem;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      grid-gap: 1em;
+    }
+  }
+}
+
+@media only screen and (max-width: $bp-tablet) {
+  .gallery-header {
+    font-size: 1.7rem;
+  }
+  .gallery-wrapper {
+    .gallery-container {
+      width: auto;
+    }
+  }
+}

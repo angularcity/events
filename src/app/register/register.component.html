@@ -1,0 +1,9 @@
+<div class="register-page">
+  <div class="register-page__wrapper">
+    <form (ngSubmit)="onRegister(f)" #f="ngForm" class="register-page__form">
+      <input type="text" placeholder="Username" name="email" ngModel />
+      <input type="password" placeholder="Password" name="password" ngModel />
+      <button>register <span *ngIf="isLoading" class="loader"></span></button>
+    </form>
+  </div>
+</div>

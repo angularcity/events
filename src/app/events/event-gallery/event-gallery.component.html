@@ -1,0 +1,12 @@
+<h1 class="gallery-header">Main events happening in your city</h1>
+
+<div class="gallery-wrapper">
+  <div class="gallery-container">
+    <div class="grid-container" *ngIf="(events$ | async) as events">
+      <app-gallery-item
+        *ngFor="let event of events"
+        [event]="event"
+      ></app-gallery-item>
+    </div>
+  </div>
+</div>

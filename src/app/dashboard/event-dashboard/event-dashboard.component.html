@@ -1,0 +1,18 @@
+<div class="event-dashboard">
+  <div class="btn-container">
+    <button (click)="setView('ADD')" class="booking">
+      <i class="fas fa-plus-square"></i>
+      <span class="long"> Add <span class="short"> new event </span></span>
+    </button>
+    <button (click)="setView('UPDATE')" class="booking">
+      <i class="fas fa-edit"></i>
+      <span class="long"> Edit <span class="short">Existing Event</span> </span>
+    </button>
+  </div>
+  <div *ngIf="viewMode === 'ADD'" class="add-section">
+    <app-add-event (formComplete)="formCompleteHandle($event)"></app-add-event>
+  </div>
+  <div *ngIf="viewMode === 'UPDATE'" class="update-section">
+    <app-edit-event></app-edit-event>
+  </div>
+</div>

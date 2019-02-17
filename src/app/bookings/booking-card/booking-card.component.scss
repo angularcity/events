@@ -1,0 +1,37 @@
+@import "../../../partials/variables";
+
+.booking-card-wrapper {
+  width: 500px;
+  background-color: map-get($map: $colors, $key: black);
+  margin-bottom: 20px;
+  .booking-card {
+    color: #fff;
+    display: flex;
+    .booking-thumb {
+      width: 180px;
+      height: 180px;
+    }
+    .booking-card-desc {
+      padding: 0 20px;
+      .header {
+        text-transform: uppercase;
+        letter-spacing: 0.3rem;
+      }
+      .date {
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+    .cancel-btn {
+      background-color: map-get($map: $colors, $key: red);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<div class="notify {{ options.type }}" [ngClass]="{ show: options.visibility }">
+  <i *ngIf="options.type === 'success'" class="fas fa-check notify-icon"></i>
+  <i *ngIf="options.type === 'alert'" class="fas fa-times notify-icon"></i>
+  {{ options.message || "Notification " }}
+</div>

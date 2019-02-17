@@ -1,0 +1,38 @@
+<div class="event" *ngIf="currentEvent">
+  <div class="event-map-wrapper">
+    <img
+      class="event-thumbnail"
+      [src]="currentEvent?.imageUrl"
+      alt="{{ currentEvent?.name }}"
+    />
+    <div class="map">
+      <app-event-map
+        [latitude]="currentEvent.location.lat"
+        [longitude]="currentEvent.location.lng"
+      ></app-event-map>
+    </div>
+  </div>
+
+  <div class="details-container">
+    <h2>{{ currentEvent?.name }}</h2>
+    <p>
+      <i class="fas fa-map-marker-alt"></i> {{ currentEvent?.location.name }}
+    </p>
+    <p><i class="far fa-calendar-alt"></i> {{ currentEvent?.date }}</p>
+    <div class="detailed-description">
+      <h3>Event Description</h3>
+      <p>{{ currentEvent?.description }}</p>
+      <button
+        [disabled]="isBtnDisabled$ | async"
+        (click)="onBooking()"
+        class="booking"
+      >
+        {{
+          (isBtnDisabled$ | async)
+            ? "You already booked this event"
+            : "Book your seat"
+        }}
+      </button>
+    </div>
+  </div>
+</div>

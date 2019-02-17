@@ -1,0 +1,183 @@
+@import "../../../partials/variables";
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: map-get($map: $colors, $key: black);
+  li {
+    float: left;
+    a {
+      display: block;
+      color: map-get($map: $colors, $key: white);
+      text-align: center;
+      padding: 2.4rem 1.6rem;
+      text-decoration: none;
+      .mob {
+        display: none;
+      }
+      &:hover:not(.active) {
+        background-color: map-get($map: $colors, $key: red);
+      }
+    }
+  }
+  li.right {
+    float: right;
+  }
+  .active {
+    background-color: map-get($map: $colors, $key: red);
+  }
+}
+.mobile-hamburger {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  display: none;
+}
+
+@media only screen and (max-width: $bp-tablet) {
+  .mobile-hamburger {
+    display: flex;
+    flex-direction: row-reverse;
+    color: map-get($map: $colors, $key: white);
+    width: 100vw;
+    height: 50px;
+    position: fixed;
+    background: map-get($map: $colors, $key: black);
+    top: 0;
+    right: 0;
+    text-align: center;
+    z-index: 200;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      z-index: 320;
+      width: 60px;
+    }
+    cursor: pointer;
+  }
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 250px;
+    top: 0;
+    bottom: 0;
+    z-index: 300;
+    //transition: 0.5s;
+    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    li {
+      a {
+        display: flex;
+        .mob {
+          display: block;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  .overlay {
+    display: none;
+  }
+  .mobile-hamburger + .navbar {
+    width: 0;
+  }
+  .mobile-hamburger + .navbar + .overlay {
+    display: none;
+  }
+  .mobile-hamburger.open + .navbar {
+    width: 250px;
+  }
+  .mobile-hamburger.open + .navbar + .overlay {
+    display: block;
+  }
+}
+
+// /********* Responsive breakpoint Landscape ****************/
+// @media only screen and (max-width: $bp-tablet) {
+//   .mobile-hamburger {
+//     display: block;
+
+//     background-color: map-get($map: $colors, $key: black);
+//     color: map-get($map: $colors, $key: white);
+//     padding: 2rem;
+//     overflow: hidden;
+//     a {
+//       float: right;
+//       cursor: pointer;
+//     }
+//   }
+//   .mobile-hamburger + .navbar {
+//     max-height: 0;
+//     overflow: hidden;
+//     transition: max-height 0.5s ease-out;
+//   }
+//   .mobile-hamburger.open + .navbar {
+//     max-height: 100%;
+//   }
+//   .navbar {
+//     display: flex;
+//     flex-direction: column;
+//     li {
+//       a {
+//         text-align: left;
+
+//         .mob {
+//           display: block;
+//           margin-right: 1rem;
+//           float: left;
+//         }
+//       }
+//       &:last-child {
+//         order: -1;
+//         flex: 0 0 100%;
+//       }
+//     }
+//   }
+// }
+// /********* Responsive breakpoint Mobile ****************/
+
+// @media only screen and (max-width: $bp-mobile-portrait) {
+//   .navbar {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     li {
+//       flex: 0 0 50%;
+//     }
+//     // .mobile-hamburger,
+//     // .login {
+//     //   flex: 1 1 100%;
+//     // }
+//   }
+// }
+
+// /********* Responsive breakpoint Smaller mobile ****************/
+
+// @media only screen and (max-width: $bp-mobile-xs) {
+//   .navbar {
+//     display: flex;
+//     flex-direction: row;
+//     li {
+//       flex: 1 1 auto;
+//       text-align: center;
+//       a {
+//         .mob {
+//           float: none;
+//         }
+//       }
+//     }
+//     .link-text {
+//       display: none;
+//     }
+//   }
+// }

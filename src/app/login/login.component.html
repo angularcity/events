@@ -1,0 +1,9 @@
+<div class="login-page">
+  <div class="login-page__wrapper">
+    <form (ngSubmit)="onLogin(f)" #f="ngForm" class="login-page__form">
+      <input type="text" placeholder="Username" name="email" ngModel />
+      <input type="password" placeholder="Password" name="password" ngModel />
+      <button>login <span *ngIf="isLoading" class="loader"></span></button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+@import "../partials/variables";
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main {
+  flex-grow: 1;
+  background-color: map-get($map: $colors, $key: brown);
+}
+@media only screen and (max-width: $bp-tablet) {
+  .main {
+    margin-top: 50px;
+  }
+}

@@ -1,0 +1,9 @@
+<div class="edit-event">
+  <ul class="edit-list">
+    <app-edit-event-item
+      [event]="event"
+      (formSubmit)="updateFormSubmit($event)"
+      *ngFor="let event of (events$ | async)"
+    ></app-edit-event-item>
+  </ul>
+</div>

@@ -1,0 +1,13 @@
+@import "../../../../partials/variables";
+.events-search {
+  padding: 3rem 1rem;
+  text-align: center;
+  .search-input {
+    width: 70%;
+    outline: none;
+    padding: 1rem;
+    &:focus {
+      border-bottom: 3px solid map-get($map: $colors, $key: red);
+    }
+  }
+}

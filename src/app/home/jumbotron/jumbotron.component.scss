@@ -1,0 +1,51 @@
+@import "../../../partials/variables";
+
+.jumbotron {
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+
+  img.fluid-image {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    background-color: map-get($map: $colors, $key: black);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .jumbotron-header {
+      z-index: 100;
+      color: map-get($map: $colors, $key: white);
+      h1 {
+        font-family: "Nanum Pen Script", cursive;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-size: 5rem;
+      }
+      h2 {
+        font-family: "Nanum Pen Script", cursive;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: map-get($map: $colors, $key: red);
+        font-size: 4rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $bp-mobile-portrait) {
+  .jumbotron {
+    height: 250px;
+  }
+}

@@ -1,0 +1,12 @@
+@import "../../../partials/variables";
+
+p {
+  color: #fff;
+  background-color: darken(
+    $color: map-get($map: $colors, $key: black),
+    $amount: 2%
+  );
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}

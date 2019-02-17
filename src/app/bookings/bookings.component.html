@@ -1,0 +1,8 @@
+<div class="bookings">
+  <h1>My Booked Events</h1>
+
+  <app-booking-card
+    *ngFor="let item of (bookedArr$ | async)"
+    [booking]="item"
+  ></app-booking-card>
+</div>

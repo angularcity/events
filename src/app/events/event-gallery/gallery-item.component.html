@@ -1,0 +1,15 @@
+<figure class="event-gallery-card">
+  <img [src]="event.imageUrl" alt="san francisco" />
+  <p class="event-gallery-card__title">{{ event.name }}</p>
+  <span class="event-gallery-card__location">
+    <i class="fas fa-map-marker-alt"></i> {{ event.location.name }}
+  </span>
+  <figcaption>
+    <h3>Event : {{ event.name }}</h3>
+    <p>Date: {{ event.date }}</p>
+    <p>Location : {{ event.location.name }}</p>
+    <a class="read-more" [routerLink]="['/events', event.id]">
+      More &#x219D;
+    </a>
+  </figcaption>
+</figure>

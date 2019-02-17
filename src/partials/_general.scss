@@ -1,0 +1,68 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  font-family: "Titillium Web", sans-serif;
+  min-height: 100vh;
+  background-color: #333;
+}
+.main {
+}
+.fluid-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.read-more {
+  background-color: map-get($map: $colors, $key: red);
+  text-decoration: none;
+  padding: 5px 15px;
+  border-radius: 15px;
+  color: map-get($map: $colors, $key: white);
+  display: inline-block;
+  margin-top: 10px;
+  max-width: 88px;
+  cursor: pointer;
+  border: none;
+}
+.booking {
+  background-color: map-get($map: $colors, $key: red);
+  color: map-get($map: $colors, $key: white);
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  padding: 2rem;
+  margin-right: 1rem;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  i {
+    margin-right: 10px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .short {
+      display: none;
+    }
+  }
+}
+
+.submit {
+  background-color: map-get($map: $colors, $key: red);
+  color: map-get($map: $colors, $key: white);
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  padding: 1rem;
+  width: 200px;
+  &:disabled {
+    background-color: #ccc;
+  }
+}
+
+// font-family: 'Nanum Pen Script', cursive;
+// font-family: 'Dancing Script', cursive;
+// font-family: 'Caveat Brush', cursive;

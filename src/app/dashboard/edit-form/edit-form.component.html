@@ -1,0 +1,72 @@
+<form #f="ngForm" class="event-form" (ngSubmit)="updateFormSubmit(f)">
+  <div class="form-group">
+    <label for=""> Event Name </label>
+    <input name="name" #name="ngModel" ngModel required type="text" />
+    <span *ngIf="name.invalid && name.touched" class="help-block">
+      Event Name required
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for=""> Event Date </label>
+    <input type="text" #date="ngModel" ngModel required name="date" />
+    <span *ngIf="date.invalid && date.touched" class="help-block">
+      Event Date required
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for=""> Event Image </label>
+    <input type="text" #imageUrl="ngModel" ngModel required name="imageUrl" />
+    <span *ngIf="imageUrl.invalid && imageUrl.touched" class="help-block">
+      Event Image required
+    </span>
+  </div>
+
+  <div ngModelGroup="location">
+    <div class="form-group">
+      <label for=""> Event Location </label>
+      <input type="text" #locationName="ngModel" ngModel required name="name" />
+      <span *ngIf="name.invalid && name.touched" class="help-block">
+        Event Location required
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for=""> Location Latitude</label>
+      <input name="lat" #latitude="ngModel" ngModel required type="text" />
+      <span *ngIf="latitude.invalid && latitude.touched" class="help-block">
+        Location Latitude required
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for=""> Location Longitude</label>
+      <input name="lng" #longitude="ngModel" ngModel required type="text" />
+      <span *ngIf="longitude.invalid && longitude.touched" class="help-block">
+        Location Longitude required
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for=""> Tickets Available</label>
+    <input name="ticketsAvailable" ngModel type="checkbox" />
+  </div>
+
+  <div class="form-group">
+    <label for=""> Description</label>
+    <textarea
+      #description="ngModel"
+      name="description"
+      ngModel
+      required
+      rows="4"
+    ></textarea>
+    <span *ngIf="description.invalid && description.touched" class="help-block">
+      Description required
+    </span>
+  </div>
+  <button [disabled]="!f.valid" class="submit" type="submit">Save Event</button>
+  <!-- <pre> {{ f.value | json }}</pre> -->
+</form>
