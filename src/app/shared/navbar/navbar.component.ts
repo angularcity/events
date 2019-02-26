@@ -1,6 +1,10 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from "@angular/core";
 
 import { AuthService } from "src/app/services/auth.service";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/core-data/state";
+import { getLoggedInUser } from "src/app/core-data/state/login";
+import * as loginActions from "../../core-data/state/login";
 
 @Component({
   selector: "app-navbar",
@@ -9,18 +13,18 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
-  constructor(public auth: AuthService, private renderer: Renderer2) {}
+  constructor(public auth: AuthService, private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.auth.user.subscribe(loggedIn => {
-      this.isLoggedIn = !!loggedIn;
+    this.store.select(getLoggedInUser).subscribe(user => {
+      this.isLoggedIn = !!user;
     });
   }
 
   ngAfterViewInit(): void {}
 
   logout() {
-    //this.auth.logout();
+    this.store.dispatch(new loginActions.Logout());
   }
   toggle() {}
 }

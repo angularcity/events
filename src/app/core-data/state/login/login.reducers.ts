@@ -4,16 +4,12 @@ import { User } from "src/app/models/users.model";
 
 export interface LoginState {
   user: User | null;
-  tokenExpirationTimer: any;
   error: any;
-  email: string | null;
 }
 
 export const initState: LoginState = {
   user: null,
-  tokenExpirationTimer: null,
-  error: null,
-  email: null
+  error: null
 };
 
 export function loginReducer(
@@ -31,11 +27,17 @@ export function loginReducer(
         ...state,
         error: action.payload
       };
-    case fromLogin.LoginActionTypes.SetUserEmail:
+    case fromLogin.LoginActionTypes.Logout:
       return {
         ...state,
-        email: action.payload
+        user: null
       };
+    case fromLogin.LoginActionTypes.SetUserAfterLoginSuccss:
+      return {
+        ...state,
+        user: action.payload
+      };
+
     default:
       return state;
   }

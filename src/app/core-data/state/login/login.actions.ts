@@ -6,12 +6,17 @@ export enum LoginActionTypes {
   LoginSuccess = "[Login] LoginSuccess",
   LoginFailure = "[Login] LoginFailure",
   SetUserAfterLoginSuccss = "[Login] SetUserAfterLoginSuccss",
-  SetUserEmail = "[Login] SetUserEmail"
+  SetUserEmail = "[Login] SetUserEmail",
+  Logout = "[Login] Logout"
 }
 
 export class Login implements Action {
   readonly type = LoginActionTypes.Login;
   constructor(public payload: { email: string; password: string }) {}
+}
+
+export class Logout implements Action {
+  readonly type = LoginActionTypes.Logout;
 }
 
 export class SetUserAfterLoginSuccess implements Action {
@@ -39,4 +44,5 @@ export type LoginActions =
   | LoginSuccess
   | LoginFailure
   | SetUserAfterLoginSuccess
-  | SetUserEmail;
+  | SetUserEmail
+  | Logout;

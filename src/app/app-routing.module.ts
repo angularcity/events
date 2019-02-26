@@ -7,23 +7,23 @@ import { AuthGuardService } from "./services/auth-guard.service";
 // canActivate: [AuthGuardService]
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "home", component: HomeComponent },
+  { path: "home", component: HomeComponent, canActivate: [AuthGuardService] },
   {
     path: "events",
-    loadChildren: "./events/events.module#EventsModule"
-    // canActivate: [AuthGuardService]
+    loadChildren: "./events/events.module#EventsModule",
+    canActivate: [AuthGuardService]
   },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   {
     path: "bookings",
-    loadChildren: "./bookings/bookings.module#BookingModule"
-    // canActivate: [AuthGuardService]
+    loadChildren: "./bookings/bookings.module#BookingModule",
+    canActivate: [AuthGuardService]
   },
   {
     path: "manage",
-    loadChildren: "./dashboard/dashboard.module#DashboardModule"
-    // canActivate: [AuthGuardService]
+    loadChildren: "./dashboard/dashboard.module#DashboardModule",
+    canActivate: [AuthGuardService]
   }
 ];
 

@@ -7,100 +7,63 @@ import {
   mergeMap,
   map,
   catchError,
-  withLatestFrom
+  withLatestFrom,
+  switchMap
 } from "rxjs/operators";
 import { FirebaseService } from "src/app/services/firebase.service";
 
-import { of } from "rxjs";
+import { of, Observable } from "rxjs";
 import { AuthService, AuthResponseData } from "src/app/services/auth.service";
 import { User } from "src/app/models/users.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "..";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class LoginEffects {
   @Effect()
-  login$ = this.actions$.pipe(
+  login$: Observable<any> = this.actions$.pipe(
     ofType(loginActions.LoginActionTypes.Login),
-    // map((action: any) => new loginActions.SetUserEmail(action.payload.email)),
-    mergeMap((action: any) =>
-      this.authSvc.login(action.payload.email, action.payload.password).pipe(
-        catchError(errResponse => {
-          this.handleError(errResponse.error.error.message);
-          return of(new loginActions.LoginFailure(errResponse));
-        })
-      )
-    ),
-    withLatestFrom(this.store$),
-    map(([resData, store]) => {
-      console.log("YOOOOOOO", resData, store);
-      // const formObj = action.payload;
-      // const latest = store.dashboard;
-
-      // const newObj = {
-      //   id: formObj.name,
-      //   ...latest.formVal
-      // };
-      // return new fromEvents.AddNewEvent(newObj);
+    map((action: any) => action.payload),
+    switchMap(({ email, password }) => {
+      return this.auth.login(email, password).pipe(
+        map(user => {
+          return new loginActions.LoginSuccess(user);
+        }),
+        catchError(err => of(new loginActions.LoginFailure(err)))
+      );
     })
-    // map((resData: AuthResponseData) => {
-    //   console.log("Logging in...", resData);
-    //   if (resData && resData.idToken) {
-    //     this.handleLogin(
-    //       resData.idToken,
-    //       resData.localId,
-    //       parseInt(resData.expiresIn)
-    //     );
-    //   }
-    // })
-    //catchError(err => of(new bookingActions.LoadBookingsFailure(err)))
+  );
+
+  @Effect({ dispatch: false })
+  loginSuccess$: Observable<any> = this.actions$.pipe(
+    ofType(loginActions.LoginActionTypes.LoginSuccess),
+    tap(user => {
+      //when the user logs in successfully, the token and email are saved to localStorage
+      localStorage.setItem("userData", user.payload);
+      this.router.navigateByUrl("/");
+    })
+  );
+
+  @Effect({ dispatch: false })
+  loginFailure$: Observable<any> = this.actions$.pipe(
+    ofType(loginActions.LoginActionTypes.LoginFailure),
+    tap(res => console.log("Login failure!"))
+  );
+
+  @Effect({ dispatch: false })
+  public Logout: Observable<any> = this.actions$.pipe(
+    ofType(loginActions.LoginActionTypes.Logout),
+    tap(user => {
+      //when the user log out the token and email are removed from localStorage
+      localStorage.removeItem("userData");
+      this.router.navigateByUrl("/login");
+    })
   );
 
   constructor(
     private actions$: Actions,
-    private authSvc: AuthService,
-    private store$: Store<AppState>
+    private auth: AuthService,
+    private router: Router
   ) {}
-
-  private handleLogin(
-    email: string,
-    token: string,
-    userId: string,
-    expiresIn: number
-  ) {
-    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new User(email, userId, token, expirationDate);
-    localStorage.setItem("userData", JSON.stringify(user));
-    //this.autoLogout(user.timeToExpiry);
-    // this._user.next(user);
-    // this.store.dispatch(new loginActions.SetUserAfterLoginSuccss(user));
-  }
-
-  private handleError(msg: string) {
-    switch (msg) {
-      case "EMAIL_EXISTS":
-        // this.notifySvc.isVisible.next({
-        //   type: "alert",
-        //   message: "EMail Already exists",
-        //   visibility: true
-        // });
-        console.log("EMAIL_EXISTS");
-        break;
-      case "INVALID_PASSWORD":
-        // this.notifySvc.isVisible.next({
-        //   type: "alert",
-        //   message: "Invalid password provided",
-        //   visibility: true
-        // });
-        console.log("INVALID_PASSWORD");
-        break;
-      default:
-        console.log("SOME UNKNOWN ERROR");
-      // this.notifySvc.isVisible.next({
-      //   type: "alert",
-      //   message: "Authentication failed. Try once more",
-      //   visibility: true
-      // });
-    }
-  }
 }
