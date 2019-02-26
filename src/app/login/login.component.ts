@@ -3,6 +3,9 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "./../services/auth.service";
 import { NotifyService } from "../shared/notify/notify.service";
+import { Store } from "@ngrx/store";
+import { AppState } from "../core-data/state";
+import * as loginActions from "../core-data/state/login";
 
 @Component({
   selector: "app-login",
@@ -14,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     public authService: AuthService,
-    private notifySvc: NotifyService
+    private notifySvc: NotifyService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {}
@@ -22,19 +26,21 @@ export class LoginComponent implements OnInit {
   onLogin(form: NgForm) {
     this.isLoading = true;
     const { email, password } = form.value;
-    this.authService.login(email, password).subscribe(
-      success => {
-        this.isLoading = false;
-        this.notifySvc.isVisible.next({
-          type: "success",
-          message: "User successfully logged in!",
-          visibility: true
-        });
-        this.router.navigate(["/"]);
-      },
-      error => {
-        this.isLoading = false;
-      }
-    );
+    this.store.dispatch(new loginActions.Login({ email, password }));
+
+    // this.authService.login(email, password).subscribe(
+    //   success => {
+    //     this.isLoading = false;
+    //     this.notifySvc.isVisible.next({
+    //       type: "success",
+    //       message: "User successfully logged in!",
+    //       visibility: true
+    //     });
+    //     this.router.navigate(["/"]);
+    //   },
+    //   error => {
+    //     this.isLoading = false;
+    //   }
+    // );
   }
 }

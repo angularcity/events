@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {}
 
   logout() {
-    this.auth.logout();
+    //this.auth.logout();
   }
   toggle() {}
 }

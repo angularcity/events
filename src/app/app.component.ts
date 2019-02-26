@@ -16,15 +16,13 @@ export class AppComponent implements OnInit {
   isVisible$: Observable<any>;
   constructor(
     private notifyService: NotifyService,
-    private auth: AuthService
-  ) // private store: Store<AppState>
-  {}
+    private auth: AuthService // private store: Store<AppState>
+  ) {}
   ngOnInit(): void {
-    this.isVisible$ = this.notifyService.isVisible;
-    this.auth.autoLogin().subscribe(success => {
-      console.log("Auto login success");
-    });
-
+    // this.isVisible$ = this.notifyService.isVisible;
+    // this.auth.autoLogin().subscribe(success => {
+    //   console.log("Auto login success");
+    // });
     //this.store.dispatch(new eventActions.LoadAllEvents());
     // this.store
     //   .select(state => {
