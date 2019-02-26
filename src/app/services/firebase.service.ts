@@ -37,7 +37,7 @@ export class FirebaseService {
       switchMap((currentUser: any) => {
         return this.http
           .get<Event[]>(
-            `https://event-booking-baf8d.firebaseio.com/events.json?auth=${currentUser.idToken ||
+            `https://event-booking-baf8d.firebaseio.com/events.json?auth=${currentUser._token ||
               null}`
           )
           .pipe(
@@ -83,7 +83,7 @@ export class FirebaseService {
       switchMap((currentUser: any) => {
         return this.http
           .get<Event[]>(
-            `https://event-booking-baf8d.firebaseio.com/bookings.json?auth=${currentUser.idToken ||
+            `https://event-booking-baf8d.firebaseio.com/bookings.json?auth=${currentUser._token ||
               null}`
           )
           .pipe(
@@ -107,7 +107,7 @@ export class FirebaseService {
     return this.getUser().pipe(
       switchMap((currentUser: any) => {
         return this.http.delete(
-          `https://event-booking-baf8d.firebaseio.com/events/${id}.json?auth=${currentUser.idToken ||
+          `https://event-booking-baf8d.firebaseio.com/events/${id}.json?auth=${currentUser._token ||
             null}`
         );
       })
@@ -121,7 +121,7 @@ export class FirebaseService {
     return this.getUser().pipe(
       switchMap((currentUser: any) => {
         return this.http.put(
-          `https://event-booking-baf8d.firebaseio.com/events/${eventId}.json?auth=${currentUser.idToken ||
+          `https://event-booking-baf8d.firebaseio.com/events/${eventId}.json?auth=${currentUser._token ||
             null}`,
           form
         );
@@ -144,7 +144,7 @@ export class FirebaseService {
     return this.getUser().pipe(
       switchMap((currentUser: any) => {
         return this.http.post(
-          `https://event-booking-baf8d.firebaseio.com/bookings.json?auth=${currentUser.idToken ||
+          `https://event-booking-baf8d.firebaseio.com/bookings.json?auth=${currentUser._token ||
             null}`,
           {
             eventId: event.id,
@@ -179,7 +179,7 @@ export class FirebaseService {
           return;
         }
         return this.http.post(
-          `https://event-booking-baf8d.firebaseio.com/events.json?auth=${currentUser.idToken ||
+          `https://event-booking-baf8d.firebaseio.com/events.json?auth=${currentUser._token ||
             null}`,
           formVal
         );
@@ -207,7 +207,7 @@ export class FirebaseService {
           }),
           switchMap(bookingId => {
             return this.http.delete(
-              `https://event-booking-baf8d.firebaseio.com/bookings/${bookingId}.json?auth=${currentUser.idToken ||
+              `https://event-booking-baf8d.firebaseio.com/bookings/${bookingId}.json?auth=${currentUser._token ||
                 null}`
             );
           })

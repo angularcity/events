@@ -28,7 +28,14 @@ export class LoginEffects {
     switchMap(({ email, password }) => {
       return this.auth.login(email, password).pipe(
         map(user => {
-          return new loginActions.LoginSuccess(user);
+          let savedUser = new User(
+            user.email,
+            user.localId,
+            user.idToken,
+            new Date(user.expiresIn)
+          );
+          //console.log("Success user", user);
+          return new loginActions.LoginSuccess(savedUser);
         }),
         catchError(err => of(new loginActions.LoginFailure(err)))
       );
@@ -39,8 +46,7 @@ export class LoginEffects {
   loginSuccess$: Observable<any> = this.actions$.pipe(
     ofType(loginActions.LoginActionTypes.LoginSuccess),
     tap(user => {
-      //when the user logs in successfully, the token and email are saved to localStorage
-      localStorage.setItem("userData", user.payload);
+      localStorage.setItem("userData", JSON.stringify(user.payload));
       this.router.navigateByUrl("/");
     })
   );

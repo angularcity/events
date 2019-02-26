@@ -28,7 +28,7 @@ export class AuthService {
   // private _user = new BehaviorSubject<User>(null);
   //private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private store$: Store<AppState>) {}
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
     return this.http.post<AuthResponseData>(
@@ -42,32 +42,33 @@ export class AuthService {
   }
 
   autoLogin() {
-    console.log("Localstorage>>> ", localStorage.getItem("userData"));
+    if (!localStorage.getItem("userData")) {
+      return of(false);
+    }
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem("userData"));
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
 
-    // if (!localStorage.getItem("userData")) {
-    //   return of(false);
-    // }
-    // const userData: {
-    //   email: string;
-    //   id: string;
-    //   _token: string;
-    //   _tokenExpirationDate: string;
-    // } = JSON.parse(localStorage.getItem("userData"));
-    // const loadedUser = new User(
-    //   userData.email,
-    //   userData.id,
-    //   userData._token,
-    //   new Date(userData._tokenExpirationDate)
-    // );
-    // if (loadedUser.isAuth) {
-    //   this.store$.dispatch(
-    //     new loginActions.SetUserAfterLoginSuccess(loadedUser)
-    //   );
-    //   //this._user.next(loadedUser);
-    //   //this.autoLogout(loadedUser.timeToExpiry)
-    //   //navigate and clear history
-    //   return of(true);
-    // }
-    // return of(false);
+    if (loadedUser.isAuth) {
+      console.log("ISAUTH", loadedUser.isAuth);
+
+      // this.store$.dispatch(
+      //   new loginActions.SetUserAfterLoginSuccess(loadedUser)
+      // );
+      //this._user.next(loadedUser);
+      //this.autoLogout(loadedUser.timeToExpiry)
+      //navigate and clear history
+      return of(true);
+    }
+    //return of(false);
   }
 }

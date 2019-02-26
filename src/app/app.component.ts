@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     private auth: AuthService // private store: Store<AppState>
   ) {}
   ngOnInit(): void {
-    this.auth.autoLogin();
+    // this.auth.autoLogin();
     // this.isVisible$ = this.notifyService.isVisible;
     // this.auth.autoLogin().subscribe(success => {
     //   console.log("Auto login success");
