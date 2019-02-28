@@ -3,13 +3,12 @@ import { HttpClient } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
 import { throwError, BehaviorSubject, of } from "rxjs";
 
-import { NotifyService } from "../shared/notify/notify.service";
-import { User } from "../models/users.model";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { AppState } from "../core-data/state";
-import { getLoggedInUser } from "../core-data/state/login";
-import * as loginActions from "../core-data/state/login";
+import { AppState } from "../state";
+import { getLoggedInUser } from "../state/login";
+import * as loginActions from "../state/login";
+import { User } from "../models/users.model";
 
 const API_KEY = "AIzaSyCsXcKc15exyOf5rypRA25UsiuSgJblvsM";
 
@@ -25,9 +24,6 @@ export interface AuthResponseData {
 
 @Injectable()
 export class AuthService {
-  // private _user = new BehaviorSubject<User>(null);
-  //private tokenExpirationTimer: any;
-
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {

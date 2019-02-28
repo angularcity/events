@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { EventsListService } from "src/app/services/events-list.service";
-import { FirebaseService } from "src/app/services/firebase.service";
+
 import { Observable } from "rxjs";
 import { Store, select } from "@ngrx/store";
 import { AppState } from "src/app/core-data/state";

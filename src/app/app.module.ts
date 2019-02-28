@@ -8,13 +8,13 @@ import { SharedModule } from "./shared/shared.module";
 import { EffectsModule } from "@ngrx/effects";
 // Custom
 import { AppComponent } from "./app.component";
-import { EventResolverService } from "./services/event.resolver";
-import { NotifyService } from "./shared/notify/notify.service";
+
 import { StoreModule } from "@ngrx/store";
 import { reducers, metaReducers } from "./core-data/state";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { CoreDataModule } from "./core-data";
+import { NotifyService } from "./shared/notify/notify.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +30,7 @@ import { CoreDataModule } from "./core-data";
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [EventResolverService, NotifyService],
+  providers: [NotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

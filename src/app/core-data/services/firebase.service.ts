@@ -4,8 +4,8 @@ import { map, switchMap, take } from "rxjs/operators";
 import { Observable, of } from "rxjs";
 import { AuthService } from "./auth.service";
 import { Store } from "@ngrx/store";
-import { AppState } from "../core-data/state";
-import { getLoggedInUser } from "../core-data/state/login";
+import { AppState } from "../state";
+import { getLoggedInUser } from "../state/login";
 //const EVENT_ENDPOINT = ``;
 //const BOOKING_ENDPOINT = "https://event-booking-baf8d.firebaseio.com/bookings.json";
 

@@ -4,7 +4,8 @@ import * as eventActions from "./events.actions";
 import { tap, take, mergeMap, map, catchError } from "rxjs/operators";
 
 import { of } from "rxjs";
-import { FirebaseService } from "src/app/services/firebase.service";
+import { FirebaseService } from "../../services";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class EventsEffects {
@@ -17,5 +18,25 @@ export class EventsEffects {
     catchError(err => of(new eventActions.LoadAllEventsFailure(err)))
   );
 
-  constructor(private actions$: Actions, private fbService: FirebaseService) {}
+  @Effect()
+  bookEvent$ = this.actions$.pipe(
+    ofType(eventActions.EventsActionTypes.BookEvent),
+    mergeMap((action: any) => this.fbService.bookEvent(action.payload)),
+    map(() => new eventActions.BookEventSuccess()),
+    catchError(err => of(new eventActions.LoadAllEventsFailure(err)))
+  );
+
+  @Effect({ dispatch: false })
+  bookEventSuccess$ = this.actions$.pipe(
+    ofType(eventActions.EventsActionTypes.BookEventSuccess),
+    tap(res => {
+      this.router.navigateByUrl("/");
+    })
+  );
+
+  constructor(
+    private actions$: Actions,
+    private fbService: FirebaseService,
+    private router: Router
+  ) {}
 }

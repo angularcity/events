@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 import * as fromLogin from "./login.actions";
-import { User } from "src/app/models/users.model";
+import { User } from "../../models/users.model";
 
 export interface LoginState {
   user: User | null;

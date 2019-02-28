@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot
 } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { FirebaseService } from "src/app/services/firebase.service";
+import { FirebaseService } from ".";
 
 @Injectable()
 export class EventResolverService implements Resolve<Event[]> {

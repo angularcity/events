@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { AuthService } from "./../services/auth.service";
+
 import { NotifyService } from "../shared/notify/notify.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "../core-data/state";
 import * as loginActions from "../core-data/state/login";
+import { AuthService } from "../core-data/services";
 
 @Component({
   selector: "app-login",

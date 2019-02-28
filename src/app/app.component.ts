@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { NotifyService } from "./shared/notify/notify.service";
+
 import { Observable } from "rxjs";
-import { AuthService } from "./services/auth.service";
+import { AuthService } from "./core-data/services";
+
 // import { Store } from "@ngrx/store";
 // import { AppState } from "./store";
 // import * as eventActions from "./store";
@@ -15,7 +16,6 @@ export class AppComponent implements OnInit {
   title = "Music Events App";
   isVisible$: Observable<any>;
   constructor(
-    private notifyService: NotifyService,
     private auth: AuthService // private store: Store<AppState>
   ) {}
   ngOnInit(): void {

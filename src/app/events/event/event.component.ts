@@ -2,10 +2,13 @@ import { Component, OnInit, ViewContainerRef } from "@angular/core";
 
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { FirebaseService } from "src/app/services/firebase.service";
+
 import { Observable } from "rxjs";
 import { NotifyService } from "src/app/shared/notify/notify.service";
-
+import { FirebaseService } from "src/app/core-data/services";
+import * as eventActions from "../../core-data/state/events";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/core-data/state";
 @Component({
   selector: "app-event",
   templateUrl: "./event.component.html",
@@ -22,7 +25,8 @@ export class EventComponent implements OnInit {
     private fbService: FirebaseService,
     private route: ActivatedRoute,
     private router: Router,
-    private notifyService: NotifyService
+    private notifyService: NotifyService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
@@ -36,13 +40,14 @@ export class EventComponent implements OnInit {
   }
 
   onBooking() {
-    this.fbService.bookEvent(this.currentEvent).subscribe(success => {
-      this.notifyService.isVisible.next({
-        type: "success",
-        message: "Event booking done! Check your mail for more details",
-        visibility: true
-      });
-      this.router.navigate(["/"]);
-    });
+    this.store.dispatch(new eventActions.BookEvent(this.currentEvent));
+    // this.fbService.bookEvent(this.currentEvent).subscribe(success => {
+    //   this.notifyService.isVisible.next({
+    //     type: "success",
+    //     message: "Event booking done! Check your mail for more details",
+    //     visibility: true
+    //   });
+    //   this.router.navigate(["/"]);
+    // });
   }
 }

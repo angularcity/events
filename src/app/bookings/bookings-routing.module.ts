@@ -3,7 +3,6 @@ import { Routes, RouterModule } from "@angular/router";
 
 // Custom
 import { BookingsComponent } from "./bookings.component";
-import { EventResolverService } from "../services/event.resolver";
 
 const routes: Routes = [
   {

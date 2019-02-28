@@ -10,14 +10,14 @@ import {
   withLatestFrom,
   switchMap
 } from "rxjs/operators";
-import { FirebaseService } from "src/app/services/firebase.service";
 
 import { of, Observable } from "rxjs";
-import { AuthService, AuthResponseData } from "src/app/services/auth.service";
-import { User } from "src/app/models/users.model";
+
 import { Store } from "@ngrx/store";
 import { AppState } from "..";
 import { Router } from "@angular/router";
+import { AuthService } from "../../services";
+import { User } from "../../models/users.model";
 
 @Injectable()
 export class LoginEffects {

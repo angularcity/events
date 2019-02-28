@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FirebaseService } from "src/app/services/firebase.service";
-import { Router } from "@angular/router";
-import { NotifyService } from "src/app/shared/notify/notify.service";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/core-data/state";
+import * as bookingActions from "../../core-data/state/booking";
 
 @Component({
   selector: "app-booking-card",
@@ -10,22 +10,11 @@ import { NotifyService } from "src/app/shared/notify/notify.service";
 })
 export class BookingCardComponent {
   @Input() booking;
-  constructor(
-    private fbService: FirebaseService,
-    private router: Router,
-    private notifySvc: NotifyService
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {}
 
   cancel(event) {
-    this.fbService.cancelBookedEvent(event).subscribe(success => {
-      this.notifySvc.isVisible.next({
-        type: "success",
-        message: "Booked event is cancelled",
-        visibility: true
-      });
-      this.router.navigate(["/"]);
-    });
+    this.store.dispatch(new bookingActions.CancelBooking(event));
   }
 }

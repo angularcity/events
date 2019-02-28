@@ -3,12 +3,11 @@ import { CanActivate, Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "./auth.service";
 import { Observable } from "rxjs";
 import { map, take, tap, switchMap } from "rxjs/operators";
-import { ToastrService } from "ngx-toastr";
-import { NotifyService } from "../shared/notify/notify.service";
+
 import { Store } from "@ngrx/store";
-import { AppState } from "../core-data/state";
-import { getLoggedInUser } from "../core-data/state/login";
-import * as loginActions from "../core-data/state/login";
+import { AppState } from "../state";
+import { getLoggedInUser } from "../state/login";
+import * as loginActions from "../state/login";
 @Injectable()
 export class AuthGuardService implements CanActivate {
   constructor(

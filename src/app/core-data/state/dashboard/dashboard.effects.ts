@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 
 import * as fromDashboard from "./dashboard.actions";
 import * as fromEvents from "../events";
-import { FirebaseService } from "src/app/services/firebase.service";
+
 import { mergeMap, tap, map, withLatestFrom, catchError } from "rxjs/operators";
 
 import { Store } from "@ngrx/store";
@@ -11,6 +11,7 @@ import { DashboardState } from "./dashboard.reducer";
 import { pipe, of } from "rxjs";
 import { AppState } from "../index";
 import { Router } from "@angular/router";
+import { FirebaseService } from "../../services";
 
 @Injectable()
 export class DashboardEffects {

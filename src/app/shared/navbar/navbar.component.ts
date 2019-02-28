@@ -1,10 +1,10 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from "@angular/core";
 
-import { AuthService } from "src/app/services/auth.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/core-data/state";
 import { getLoggedInUser } from "src/app/core-data/state/login";
 import * as loginActions from "../../core-data/state/login";
+import { AuthService } from "src/app/core-data/services";
 
 @Component({
   selector: "app-navbar",
